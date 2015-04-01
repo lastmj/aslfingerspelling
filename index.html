@@ -8,7 +8,8 @@
 	</head>
 
 	<body ng-controller="MainController">
-		<input id="wordInput" type="text" placeholder="type word" autofocus></input>
+		<img ng-src="{{imgSrc}}" />
+		<input id="wordInput" type="text" placeholder="type word" autofocus ng-model="letters"></input>
 	</body>
 
 	<style>
@@ -17,8 +18,8 @@
 			height: 250px;
 			width: 50%;
 			position: absolute;
-			left: 50%;
-			transform: translate(-50%, -50%);
+			left: 60%;
+			transform: translate(-60%, -60%);
 			top: 75%;
 			font-family: Ubuntu;
 			font-size: 10em;
