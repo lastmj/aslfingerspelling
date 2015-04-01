@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+
+<html ng-app="aslFingerSpelling">
+
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+		<script src="app.js"></script>
+	</head>
+
+	<body ng-controller="MainController">
+		<input id="wordInput" type="text" placeholder="type word" autofocus></input>
+	</body>
+
+	<style>
+		#wordInput {
+			border: none;
+			height: 250px;
+			width: 50%;
+			position: absolute;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			top: 75%;
+			font-family: Ubuntu;
+			font-size: 10em;
+		}
+		
+		#wordInput:focus {
+			outline: 0;
+		}
+	</style>
+</html>
