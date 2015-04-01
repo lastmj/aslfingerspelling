@@ -12,7 +12,8 @@ app.controller('MainController', ['$scope',
 				return;
 			}
 			
-			$scope.imgSrc = 'images/' + $scope.letters[$scope.letters.length - 1] + '.png';
+			var lowercase = $scope.letters.toLowerCase();
+			$scope.imgSrc = 'images/' + lowercase[lowercase.length - 1] + '.png';
 		});
 	}
 ]);

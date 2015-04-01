@@ -8,11 +8,18 @@
 	</head>
 
 	<body ng-controller="MainController">
-		<img ng-src="{{imgSrc}}" />
+		<img id="handImage" ng-src="{{imgSrc}}" />
 		<input id="wordInput" type="text" placeholder="type word" autofocus ng-model="letters"></input>
 	</body>
 
 	<style>
+		#handImage {
+			position: absolute;
+			top: 30%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+		}
+		
 		#wordInput {
 			border: none;
 			height: 250px;
