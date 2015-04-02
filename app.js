@@ -10,8 +10,9 @@ app.controller('MainController', ['$scope', '$timeout',
 		$scope.$watch('letters', function() {
 			$timeout.cancel(currentTimeout);
 			$scope.showPlayButton = false;
+			var lowercase = $scope.letters.toLowerCase();
 			
-			if($scope.letters.trim() === '') {
+			if(!isValidASLCharacter(lowercase[lowercase.length - 1])) {
 				$scope.imgSrc = 'images/transparent.png';
 				return;
 			}
@@ -22,7 +23,6 @@ app.controller('MainController', ['$scope', '$timeout',
 				}
 			}, 1500);
 			
-			var lowercase = $scope.letters.toLowerCase();
 			$scope.imgSrc = 'images/' + lowercase[lowercase.length - 1] + '.png';
 		});
 		
