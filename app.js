@@ -32,8 +32,9 @@ app.controller('MainController', ['$scope', '$timeout',
 			
 			var newLetters = $scope.letters;
 			newLetters = newLetters.toLowerCase();
-			newLetters = newLetters.split(' ').join('');
 			$scope.imgSrc = 'images/' + newLetters[0] + '.png';
+			var wordInput = document.getElementById('wordInput');
+			wordInput.setSelectionRange(0, 1);
 			
 			if (newLetters[1]) {
 				showDelayed(newLetters, 1);
@@ -43,17 +44,75 @@ app.controller('MainController', ['$scope', '$timeout',
 		var returnCount = 0;
 		function showDelayed(newLetters, index) {
 			currentTimeout = $timeout(function() {
-				$scope.imgSrc = 'images/' + newLetters[index++] + '.png';
 				
-				if (newLetters[index]) {
+				if (!isValidASLCharacter(newLetters[index])) {
+					showDelayed(newLetters, index + 1);
+					return;
+				}
+				
+				$scope.imgSrc = 'images/' + newLetters[index] + '.png';
+				
+				var wordInput = document.getElementById('wordInput');
+				wordInput.setSelectionRange(index, index + 1);
+				
+				index = index + 1;
+				if (newLetters[index]) {				
 					showDelayed(newLetters, index);
 				}
 				else {
 					currentTimeout = $timeout(function() {
 						$scope.showPlayButton = true;
+						wordInput.setSelectionRange(0);
 					}, 1500);
 				}
 			}, 1500);
+		}
+		
+		function isValidASLCharacter(c) {
+			var validASLCharacters = [
+				'0',
+				'1',
+				'2',
+				'3',
+				'4',
+				'5',
+				'6',
+				'7',
+				'8',
+				'9',
+				'a',
+				'b',
+				'c',
+				'd',
+				'e',
+				'f',
+				'g',
+				'h',
+				'i',
+				'j',
+				'k',
+				'l',
+				'm',
+				'n',
+				'o',
+				'p',
+				'q',
+				'r',
+				's',
+				't',
+				'u',
+				'v',
+				'w',
+				'x',
+				'y',
+				'z'
+			];
+			
+			if (validASLCharacters.indexOf(c) === -1) {
+				return false;
+			}
+			
+			return true;
 		}
 	}
 ]);
