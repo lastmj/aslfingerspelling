@@ -9,10 +9,29 @@
 
 	<body ng-controller="MainController">
 		<img id="handImage" ng-src="{{imgSrc}}" />
+		<div id="playButton" ng-show="showPlayButton" ng-click="play()">&#9654;</div>
 		<input id="wordInput" type="text" placeholder="type word" autofocus ng-model="letters"></input>
 	</body>
 
 	<style>
+	
+		#playButton {
+			position: absolute;
+			top: 30%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			transform: scale(10);
+			
+			color: rgba(169, 169, 169, 0.95);
+			text-shadow: 0 0 1px grey;
+			transition: text-shadow .3s ease-in-out;
+			cursor: pointer;
+		}
+		
+		#playButton:hover {
+			text-shadow: none;
+		}
+	
 		#handImage {
 			position: absolute;
 			top: 30%;
