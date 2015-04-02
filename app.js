@@ -32,9 +32,12 @@ app.controller('MainController', ['$scope', '$timeout',
 			
 			var newLetters = $scope.letters;
 			newLetters = newLetters.toLowerCase();
-			$scope.imgSrc = 'images/' + newLetters[0] + '.png';
-			var wordInput = document.getElementById('wordInput');
-			wordInput.setSelectionRange(0, 1);
+			
+			if(isValidASLCharacter(newLetters[0])) {
+				$scope.imgSrc = 'images/' + newLetters[0] + '.png';
+				var wordInput = document.getElementById('wordInput');
+				wordInput.setSelectionRange(0, 1);
+			}
 			
 			if (newLetters[1]) {
 				showDelayed(newLetters, 1);
