@@ -15,6 +15,7 @@
 		<img id="handImage" ng-src="{{imgSrc}}" alt="ASL Letter" />
 		<div id="playButton" ng-show="showPlayButton" ng-click="play()">&#9654;</div>
 		<input id="wordInput" type="text" placeholder="type word" autofocus ng-model="letters"></input>
+		<a id="privacyPolicyButton" href="privacy-policy.html">Privacy Policy</a>
 	</body>
 
 	<style>
@@ -56,6 +57,16 @@
 		
 		#wordInput:focus {
 			outline: 0;
+		}
+		
+		#privacyPolicyButton {
+			color: grey;
+			font-family: Ubuntu;
+			position: absolute;
+			bottom: 10px;
+			right: 10px;
+			cursor: pointer;
+			text-decoration: none;
 		}
 	</style>
 </html>
