@@ -1,5 +1,15 @@
 var app = angular.module('aslFingerSpelling', []);
 
+//Taken from here: not sure about the license, I think it might be small enough to not matter: http://stackoverflow.com/questions/22754393/in-a-chrome-app-using-angularjs-can-i-use-the-ngsrc-directive-directly-for-inte
+app.config([
+  '$compileProvider',
+  function ($compileProvider) {
+      //  Default imgSrcSanitizationWhitelist: /^\s*(https?|ftp|file):|data:image\//
+      //  chrome-extension: will be added to the end of the expression
+      $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|ftp|file|chrome-extension):|data:image\//);
+  }
+]);
+
 app.controller('MainController', ['$scope', '$timeout',
 	function($scope, $timeout) {
 		
