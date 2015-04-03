@@ -31,15 +31,15 @@ app.controller('MainController', ['$scope', '$timeout',
 				if ($scope.letters !== '') {
 					$scope.showPlayButton = true;
 				}
-			}, medium);
+			}, $scope.medium);
 			
 			$scope.imgSrc = 'images/' + lowercase[lowercase.length - 1] + '.png';
 		});
         
-        var fast = 500;
-        var medium = 1000;
-        var slow = 1500;
-        $scope.speed = fast;
+        $scope.fast = 500;
+        $scope.medium = 1000;
+        $scope.slow = 1500;
+        $scope.speed = $scope.fast;
 		
 		$scope.play = function() {
 			
@@ -81,7 +81,7 @@ app.controller('MainController', ['$scope', '$timeout',
 					currentTimeout = $timeout(function() {
 						$scope.showPlayButton = true;
 						wordInput.setSelectionRange(0);
-					}, medium);
+					}, $scope.medium);
 				}
 			}, $scope.speed);
 		}
