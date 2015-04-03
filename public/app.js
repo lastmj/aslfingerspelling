@@ -49,8 +49,8 @@ app.controller('MainController', ['$scope', '$timeout', 'FingerSpellingService',
         $scope.fast = 500;
         $scope.medium = 1000;
         $scope.slow = 1500;
-        $scope.speed = $scope.fast;
-        $scope.speedText = 'fast';
+        $scope.speed = $scope.medium;
+        $scope.speedText = 'medium';
 		
 		$scope.play = function() {
 			
