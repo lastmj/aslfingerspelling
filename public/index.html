@@ -19,11 +19,11 @@
 			<div id="speedLabel">speed: </div>
 			
 			<div id="speedLabelAndMenuGroup">
-				<div id="speedText">{{speedText}}</div>
-				<div id="speedMenu" ng-hide="true">
-					<div id="fastMenuItem" ng-click="speedMenuItemClick('fast')">fast</div>
-					<div id="mediumMenuItem" ng-click="speedMenuItemClick('medium')">medium</div>
-					<div id="slowMenuItem" ng-click="speedMenuItemClick('slow')">slow</div>
+				<div id="speedText" ng-click="showSpeedMenu = !showSpeedMenu">{{speedText}}</div>
+				<div id="speedMenu" ng-show="showSpeedMenu">
+					<div id="fastMenuItem" ng-click="speedMenuItemClick('fast')" ng-hide="speedText === 'fast'" class="speedMenuItem">fast</div>
+					<div id="mediumMenuItem" ng-click="speedMenuItemClick('medium')" ng-hide="speedText === 'medium'" class="speedMenuItem">medium</div>
+					<div id="slowMenuItem" ng-click="speedMenuItemClick('slow')" ng-hide="speedText === 'slow'" class="speedMenuItem">slow</div>
 				</div>
 			</div>
 		</div>
@@ -41,7 +41,6 @@
 			position: absolute;
 			top: 5%;
 			right: 20%;
-			cursor: pointer;
 			z-index: 1;
 		}
 		
@@ -51,6 +50,7 @@
 			color: darkgray;
 			font-size: 2.5em;
 			font-weight: bold;
+			cursor: default;
 		}
 		
 		#speedText {
@@ -59,11 +59,30 @@
 			font-weight: bold;
 			color: darkgray;
 			margin-top: 7px;
+			cursor: pointer;
+			transition: color .3s ease-in-out;
+		}
+		
+		#speedText:hover {
+			color: black;
 		}
 		
 		#speedLabelAndMenuGroup {
 			position: absolute;
 			left: 140px;
+		}
+		
+		.speedMenuItem {
+			font-family: Ubuntu, sans-serif;
+			font-size: 2em;
+			font-weight: bold;
+			color: darkgray;
+			cursor: pointer;
+			transition: color .3s ease-in-out;
+		}
+		
+		.speedMenuItem:hover {
+			color: black;
 		}
 	
 		#playButton {

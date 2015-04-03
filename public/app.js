@@ -15,6 +15,7 @@ app.controller('MainController', ['$scope', '$timeout',
 		
 		$scope.letters = '';
 		$scope.showPlayButton = false;
+        $scope.showSpeedMenu = false;
 		
 		var currentTimeout;
 		$scope.$watch('letters', function() {
@@ -88,6 +89,9 @@ app.controller('MainController', ['$scope', '$timeout',
 		}
         
         $scope.speedMenuItemClick = function(speedText) {
+            
+            $scope.showSpeedMenu = !$scope.showSpeedMenu;
+            
             if (speedText === 'fast') {
                 $scope.speed = $scope.fast;
                 $scope.speedText = speedText;
