@@ -10,9 +10,11 @@ app.config([
   }
 ]);
 
-app.controller('MainController', ['$scope', '$timeout',
-	function($scope, $timeout) {
+app.controller('MainController', ['$scope', '$timeout', 'FingerSpellingService',
+	function($scope, $timeout, FingerSpellingService) {
 		
+        FingerSpellingService.getImages();
+        
 		$scope.letters = '';
 		$scope.showPlayButton = false;
         $scope.showSpeedMenu = false;
@@ -24,8 +26,8 @@ app.controller('MainController', ['$scope', '$timeout',
 			var lowercase = $scope.letters.toLowerCase();
 			
 			if(!isValidASLCharacter(lowercase[lowercase.length - 1])) {
-				$scope.imgSrc = 'images/transparent.png';
-				return;
+                $scope.imgSrc = 'data:image/png;base64,' + FingerSpellingService.images['transparent'];
+                return;
 			}
 			
 			currentTimeout = $timeout(function() {
@@ -34,7 +36,7 @@ app.controller('MainController', ['$scope', '$timeout',
 				}
 			}, $scope.medium);
 			
-			$scope.imgSrc = 'images/' + lowercase[lowercase.length - 1] + '.png';
+            $scope.imgSrc = 'data:image/png;base64,' + FingerSpellingService.images[lowercase[lowercase.length - 1]];
 		});
         
         $scope.fast = 500;
@@ -51,7 +53,7 @@ app.controller('MainController', ['$scope', '$timeout',
 			newLetters = newLetters.toLowerCase();
 			
 			if(isValidASLCharacter(newLetters[0])) {
-				$scope.imgSrc = 'images/' + newLetters[0] + '.png';
+                $scope.imgSrc = 'data:image/png;base64,' + FingerSpellingService.images[newLetters[0]];
 				var wordInput = document.getElementById('wordInput');
 				wordInput.setSelectionRange(0, 1);
 			}
@@ -70,7 +72,7 @@ app.controller('MainController', ['$scope', '$timeout',
 					return;
 				}
 				
-				$scope.imgSrc = 'images/' + newLetters[index] + '.png';
+                $scope.imgSrc = 'data:image/png;base64,' + FingerSpellingService.images[newLetters[index]];
 				
 				var wordInput = document.getElementById('wordInput');
 				wordInput.setSelectionRange(index, index + 1);
@@ -82,7 +84,7 @@ app.controller('MainController', ['$scope', '$timeout',
 				else {
 					currentTimeout = $timeout(function() {
 						$scope.showPlayButton = true;
-						wordInput.setSelectionRange(0);
+						wordInput.setSelectionRange(newLetters.length, newLetters.length);
 					}, $scope.medium);
 				}
 			}, $scope.speed);
@@ -157,5 +159,83 @@ app.controller('MainController', ['$scope', '$timeout',
 			
 			return true;
 		}
+	}
+]);
+
+app.factory('FingerSpellingService', ['$http',
+
+	function($http) {
+		var o = {
+			images: {}
+		};
+
+        var validASLCharacters = [
+            '0',
+            '1',
+            '2',
+            '3',
+            '4',
+            '5',
+            '6',
+            '7',
+            '8',
+            '9',
+            'a',
+            'b',
+            'c',
+            'd',
+            'e',
+            'f',
+            'g',
+            'h',
+            'i',
+            'j',
+            'k',
+            'l',
+            'm',
+            'n',
+            'o',
+            'p',
+            'q',
+            'r',
+            's',
+            't',
+            'u',
+            'v',
+            'w',
+            'x',
+            'y',
+            'z'
+        ];
+        
+        o.getImages = function() {
+            
+            var transparentPromise = $http.get('images/transparent.png', { responseType: 'arraybuffer' });
+            
+            transparentPromise
+                .success(function(data, status, headers, config) {
+                    var stringUint8Array = new Uint8Array(data);
+                    var base64Data = btoa(String.fromCharCode.apply(null, stringUint8Array));
+                    o.images.transparent = base64Data;
+                })
+                .error(function(data, status, headers, config) {});
+            
+            validASLCharacters.forEach(function(element) {
+                
+                o.images[element] = '';
+                
+                var promise = $http.get('images/' + element + '.png', { responseType: 'arraybuffer' });
+                
+                promise
+                    .success(function(data, status, headers, config) {
+                        var stringUint8Array = new Uint8Array(data);
+                        var base64Data = btoa(String.fromCharCode.apply(null, stringUint8Array));
+                        o.images[element] = base64Data;
+                    })
+                    .error(function(data, status, headers, config) {});
+            });
+        };
+
+		return o;
 	}
 ]);
