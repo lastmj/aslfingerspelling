@@ -19,6 +19,10 @@ app.use('/', function(req, res) {
 	res.sendFile('public/index.html');
 });
 
+app.use('/robots.txt', function(req, res) {
+	res.status(404).end();
+});
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
@@ -43,11 +47,8 @@ if (app.get('env') === 'development') {
 // production error handler
 // no stacktraces leaked to user
 app.use(function(err, req, res, next) {
-    res.status(err.status || 500);
-    res.render('error', {
-        message: err.message,
-        error: {}
-    });
+    //res.status(err.status || 500).end();
+	res.status(404).end();
 });
 
 
