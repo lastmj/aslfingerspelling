@@ -25,8 +25,15 @@ app.controller('MainController', ['$scope', '$timeout', 'FingerSpellingService',
 			$scope.showPlayButton = false;
 			var lowercase = $scope.letters.toLowerCase();
 			
-			if(!isValidASLCharacter(lowercase[lowercase.length - 1])) {
-                $scope.imgSrc = 'data:image/png;base64,' + FingerSpellingService.images['transparent'];
+			if (!isValidASLCharacter(lowercase[lowercase.length - 1])) {
+                
+                if (FingerSpellingService.images['transparent']) {
+                    $scope.imgSrc = 'data:image/png;base64,' + FingerSpellingService.images['transparent'];
+                }
+                else {
+                    $scope.imgSrc = 'images/transparent.png';
+                }
+                
                 return;
 			}
 			
