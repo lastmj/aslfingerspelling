@@ -40,6 +40,7 @@ app.controller('MainController', ['$scope', '$timeout',
         $scope.medium = 1000;
         $scope.slow = 1500;
         $scope.speed = $scope.fast;
+        $scope.speedText = 'fast';
 		
 		$scope.play = function() {
 			
@@ -85,6 +86,26 @@ app.controller('MainController', ['$scope', '$timeout',
 				}
 			}, $scope.speed);
 		}
+        
+        $scope.speedMenuItemClick = function(speedText) {
+            if (speedText === 'fast') {
+                $scope.speed = $scope.fast;
+                $scope.speedText = speedText;
+                return;
+            }
+            
+            if (speedText === 'medium') {
+                $scope.speed = $scope.medium;
+                $scope.speedText = speedText;
+                return;
+            }
+            
+            if (speedText === 'slow') {
+                $scope.speed = $scope.slow;
+                $scope.speedText = speedText;
+                return;
+            }
+        }
 		
 		function isValidASLCharacter(c) {
 			var validASLCharacters = [
