@@ -14,6 +14,11 @@
 	</head>
 
 	<body ng-controller="MainController">
+		<div id="speedMenu">
+			<div id="fastMenuItem">fast</div>
+			<div id="mediumMenuItem">medium</div>
+			<div id="slowMenuItem">slow</div>
+		</div>
 		<img id="handImage" ng-src="{{imgSrc}}" alt="ASL Letter" />
 		<div id="playButton" ng-show="showPlayButton" ng-click="play()">&#9654;</div>
 		<input id="wordInput" type="text" placeholder="type word" autofocus ng-model="letters"></input>
@@ -21,6 +26,12 @@
 	</body>
 
 	<style>
+	
+		#speedMenu {
+			position: absolute;
+			right: 10px;
+			cursor: pointer;
+		}
 	
 		#playButton {
 			position: absolute;
