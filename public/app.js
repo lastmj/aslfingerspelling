@@ -46,9 +46,9 @@ app.controller('MainController', ['$scope', '$timeout', 'FingerSpellingService',
             $scope.imgSrc = 'data:image/png;base64,' + FingerSpellingService.images[lowercase[lowercase.length - 1]];
 		});
         
-        $scope.fast = 500;
-        $scope.medium = 1000;
-        $scope.slow = 1500;
+        $scope.fast = 300;
+        $scope.medium = 800;
+        $scope.slow = 1300;
         $scope.speed = $scope.medium;
         $scope.speedText = 'medium';
 		
