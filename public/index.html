@@ -8,6 +8,7 @@
 		<link rel="icon" type="image/png" href="images/favicon2.png">
 		
 		<script src="bower_components/angular/angular.min.js"></script>
+		<script src="bower_components/jquery/dist/jquery.min.js"></script>
 		<script src="app.js"></script>
 		<link rel="stylesheet" type="text/css" href="bower_components/angular/angular-csp.css" />
 		<script src="google-analytics.js"></script>
@@ -107,6 +108,7 @@
 			top: 40%;
 			left: 50%;
 			transform: translate(-50%, -50%);
+			transition: opacity 1s ease-in-out;
 		}
 		
 		#wordInput {
@@ -117,7 +119,7 @@
 			left: 10%;
 			top: 70%;
 			font-family: Ubuntu, sans-serif;
-			font-size: 10em;
+			font-size: 15vh;
 		}
 		
 		#wordInput:focus {

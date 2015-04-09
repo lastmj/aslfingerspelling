@@ -72,15 +72,15 @@ app.controller('MainController', ['$scope', '$timeout', 'FingerSpellingService',
 		
 		var returnCount = 0;
 		function showDelayed(newLetters, index) {
-			currentTimeout = $timeout(function() {
-				
+            currentTimeout = $timeout(function() {
+                
 				if (!isValidASLCharacter(newLetters[index])) {
 					showDelayed(newLetters, index + 1);
 					return;
 				}
-				
+                
                 $scope.imgSrc = 'data:image/png;base64,' + FingerSpellingService.images[newLetters[index]];
-				
+                
 				var wordInput = document.getElementById('wordInput');
 				wordInput.setSelectionRange(index, index + 1);
 				
