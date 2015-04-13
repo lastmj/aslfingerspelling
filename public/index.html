@@ -30,9 +30,15 @@
 		</div>
 		
 		
-		<img id="handImage" ng-src="{{imgSrc}}" alt="ASL Letter" />
-		<div id="playButton" ng-show="showPlayButton" ng-click="play()">&#9654;</div>
-		<input id="wordInput" type="text" placeholder="type word" autofocus ng-model="letters"></input>
+		<div id="imageContainer">
+			<img id="handImage" ng-src="{{imgSrc}}" alt="ASL Letter" />
+			<div id="playButton" ng-show="showPlayButton" ng-click="play()">&#9654;</div>
+		</div>
+		
+		<div id="wordInputContainer">
+			<input id="wordInput" type="text" placeholder="type word" autofocus ng-model="letters"></input>
+		</div>
+		
 		<a id="privacyPolicyButton" href="privacy-policy.html">Privacy Policy</a>
 	</body>
 
@@ -103,21 +109,22 @@
 			text-shadow: none;
 		}
 	
+		#imageContainer {
+			height: 80%;
+		}
+		
 		#handImage {
-			position: absolute;
-			top: 40%;
-			left: 50%;
-			transform: translate(-50%, -50%);
-			transition: opacity 1s ease-in-out;
+			height: 50vh;
+		}
+		
+		#wordInputContainer {
+			height: 20%;
 		}
 		
 		#wordInput {
 			border: none;
 			height: 250px;
 			width: 100%;
-			position: absolute;
-			left: 10%;
-			top: 70%;
 			font-family: Ubuntu, sans-serif;
 			font-size: 15vh;
 		}
