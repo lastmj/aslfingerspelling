@@ -28,8 +28,7 @@
 				</div>
 			</div>
 		</div>
-		
-		
+	
 		<div id="imageContainer">
 			<img id="handImage" ng-src="{{imgSrc}}" alt="ASL Letter" />
 			<div id="playButton" ng-show="showPlayButton" ng-click="play()">&#9654;</div>
@@ -43,6 +42,13 @@
 	</body>
 
 	<style>
+	
+		html, body {
+			height: 100%;
+			width: 100%;
+			margin: 0;
+			padding: 0;
+		}
 	
 		#speedGroup {
 			position: absolute;
@@ -110,20 +116,23 @@
 		}
 	
 		#imageContainer {
-			height: 80%;
+			height: 70%;
+			background: green;
+			text-align: center;
 		}
 		
 		#handImage {
 			height: 50vh;
+			margin-top: 5%;
 		}
 		
 		#wordInputContainer {
-			height: 20%;
+			height: 30%;
+			background: red;
 		}
 		
 		#wordInput {
 			border: none;
-			height: 250px;
 			width: 100%;
 			font-family: Ubuntu, sans-serif;
 			font-size: 15vh;
