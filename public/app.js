@@ -29,6 +29,7 @@ app.controller('MainController', ['$scope', '$timeout', 'FingerSpellingService',
                 
                 if (FingerSpellingService.images['transparent']) {
                     $scope.imgSrc = 'data:image/png;base64,' + FingerSpellingService.images['transparent'];
+                    
                 }
                 else {
                     $scope.imgSrc = 'images/transparent.png';
