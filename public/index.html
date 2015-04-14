@@ -30,7 +30,6 @@
 		</div>
 	
 		<div id="imageContainer">
-			<!--<img id="handImage" ng-src="{{imgSrc}}" alt="ASL Letter" />-->
 			<div id="handImage" ng-style="{'background-image':'url('+imgSrc+')'}"></div>
 			<div id="playButton" ng-show="showPlayButton" ng-click="play()">&#9654;</div>
 		</div>
@@ -128,6 +127,9 @@
 			background-size: contain;
 			background-repeat: no-repeat;
 			background-position: center;
+			opacity: 1;
+			
+			transition: opacity .1s ease-in-out;
 		}
 		
 		#wordInputContainer {

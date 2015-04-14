@@ -18,7 +18,6 @@ app.controller('MainController', ['$scope', '$timeout', 'FingerSpellingService',
 		$scope.letters = '';
 		$scope.showPlayButton = false;
         $scope.showSpeedMenu = false;
-        //$scope.showHandImage = false;
 		
 		var currentTimeout;
 		$scope.$watch('letters', function() {
@@ -27,8 +26,6 @@ app.controller('MainController', ['$scope', '$timeout', 'FingerSpellingService',
 			var lowercase = $scope.letters.toLowerCase();
 			
 			if (!isValidASLCharacter(lowercase[lowercase.length - 1])) {
-                
-                $scope.showHandImage = true;
                 
                 if (FingerSpellingService.images['transparent']) {
                     $scope.imgSrc = 'data:image/png;base64,' + FingerSpellingService.images['transparent'];
@@ -83,10 +80,18 @@ app.controller('MainController', ['$scope', '$timeout', 'FingerSpellingService',
 					return;
 				}
                 
-                //$scope.showHandImage = false;
-                $('#handImage').css('opacity', 0);
-                $scope.imgSrc = 'data:image/png;base64,' + FingerSpellingService.images[newLetters[index]];
-                $('#handImage').fadeIn(100);
+                
+                //$('#handImage').css('background-image', 'url(' + 'data:image/png;base64,' + FingerSpellingService.images[1] + ')');
+                $('#handImage').css('opacity', '1');
+                $('#handImage').css('background-image', 'url(' + 'data:image/png;base64,' + FingerSpellingService.images[newLetters[index]] + ')');
+                
+                $timeout(function() {
+                    $('#handImage').css('opacity', '0');
+                }, $scope.speed - 100);
+                
+                
+                //$scope.imgSrc = 'data:image/png;base64,' + FingerSpellingService.images[1];
+                //$scope.imgSrc = 'data:image/png;base64,' + FingerSpellingService.images[newLetters[index]];
                 
 				var wordInput = document.getElementById('wordInput');
 				wordInput.setSelectionRange(index, index + 1);
