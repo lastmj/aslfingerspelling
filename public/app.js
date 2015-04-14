@@ -18,6 +18,7 @@ app.controller('MainController', ['$scope', '$timeout', 'FingerSpellingService',
 		$scope.letters = '';
 		$scope.showPlayButton = false;
         $scope.showSpeedMenu = false;
+        //$scope.showHandImage = false;
 		
 		var currentTimeout;
 		$scope.$watch('letters', function() {
@@ -26,6 +27,8 @@ app.controller('MainController', ['$scope', '$timeout', 'FingerSpellingService',
 			var lowercase = $scope.letters.toLowerCase();
 			
 			if (!isValidASLCharacter(lowercase[lowercase.length - 1])) {
+                
+                $scope.showHandImage = true;
                 
                 if (FingerSpellingService.images['transparent']) {
                     $scope.imgSrc = 'data:image/png;base64,' + FingerSpellingService.images['transparent'];
@@ -80,7 +83,10 @@ app.controller('MainController', ['$scope', '$timeout', 'FingerSpellingService',
 					return;
 				}
                 
+                //$scope.showHandImage = false;
+                $('#handImage').css('opacity', 0);
                 $scope.imgSrc = 'data:image/png;base64,' + FingerSpellingService.images[newLetters[index]];
+                $('#handImage').fadeIn(100);
                 
 				var wordInput = document.getElementById('wordInput');
 				wordInput.setSelectionRange(index, index + 1);
