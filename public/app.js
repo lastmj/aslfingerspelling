@@ -68,6 +68,10 @@ app.controller('MainController', ['$scope', '$timeout', 'FingerSpellingService',
 			
 			if (newLetters[1]) {
 				showDelayed(newLetters, 1);
+                
+                $timeout(function() {
+                    $('#handImage').css('opacity', '0');
+                }, $scope.speed - 100);
 			}
 		};
 		
@@ -80,18 +84,8 @@ app.controller('MainController', ['$scope', '$timeout', 'FingerSpellingService',
 					return;
 				}
                 
-                
-                //$('#handImage').css('background-image', 'url(' + 'data:image/png;base64,' + FingerSpellingService.images[1] + ')');
                 $('#handImage').css('opacity', '1');
-                $('#handImage').css('background-image', 'url(' + 'data:image/png;base64,' + FingerSpellingService.images[newLetters[index]] + ')');
-                
-                $timeout(function() {
-                    $('#handImage').css('opacity', '0');
-                }, $scope.speed - 100);
-                
-                
-                //$scope.imgSrc = 'data:image/png;base64,' + FingerSpellingService.images[1];
-                //$scope.imgSrc = 'data:image/png;base64,' + FingerSpellingService.images[newLetters[index]];
+                $scope.imgSrc = 'data:image/png;base64,' + FingerSpellingService.images[newLetters[index]];
                 
 				var wordInput = document.getElementById('wordInput');
 				wordInput.setSelectionRange(index, index + 1);
@@ -99,6 +93,10 @@ app.controller('MainController', ['$scope', '$timeout', 'FingerSpellingService',
 				index = index + 1;
 				if (newLetters[index]) {				
 					showDelayed(newLetters, index);
+                    
+                    $timeout(function() {
+                        $('#handImage').css('opacity', '0');
+                    }, $scope.speed - 100);
 				}
 				else {
 					currentTimeout = $timeout(function() {
