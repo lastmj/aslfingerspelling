@@ -8,7 +8,10 @@
       "scripts": ["background.js"]
     }
   },
-  "icons": { "16": "images/favicon2.png", "128": "images/favicon2.png" },
+  "icons": { 
+      "16": "images/favicon-16.png",
+      "48": "images/favicon-48.png", 
+      "128": "images/favicon-128.png" },
   "permissions": [
     "https://www.google-analytics.com/analytics.js"
   ]
